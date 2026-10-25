@@ -357,7 +357,7 @@ function App() {
           {/* 4.3. Contact blocks */}
 
           {/* Block 1 — Phone */}
-          <div className="contact-row">
+          <div className="contact-row contact-row--1">
             <p className="contact-label">Телефон</p>
             <span className="contact-value">+7 921 666 90 66</span>
             <a
@@ -370,7 +370,7 @@ function App() {
           </div>
 
           {/* Block 2 — Email */}
-          <div className="contact-row">
+          <div className="contact-row contact-row--2">
             <p className="contact-label">Почта</p>
             <span className="contact-value">fullstack@bestuzhev.tech</span>
             <a
@@ -383,7 +383,7 @@ function App() {
           </div>
 
           {/* Block 3 — Telegram */}
-          <div className="contact-row">
+          <div className="contact-row contact-row--3">
             <p className="contact-label">Telegram</p>
             <span className="contact-value">rbestuzhev</span>
             <a
@@ -398,7 +398,7 @@ function App() {
           </div>
 
           {/* Block 4 — MAX */}
-          <div className="contact-row">
+          <div className="contact-row contact-row--4">
             <p className="contact-label">MAX</p>
             <span className="contact-value">Роман Бестужев</span>
             <a
