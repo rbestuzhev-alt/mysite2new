@@ -1,1 +1,429 @@
-@import "tailwindcss";
+/* ═══════════════════════════════════════════
+   BESTUZHEV.TECH — Styles
+   ═══════════════════════════════════════════ */
+
+/* ─── CSS Variables ─── */
+:root {
+  --ink: #15202E;
+  --paper: #F3F4F5;
+  --muted: #6B7280;
+  --hair: #D1D5DB;
+  --serif: 'Playfair Display', serif;
+  --sans: 'Manrope', sans-serif;
+}
+
+/* ─── Reset ─── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─── Base ─── */
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Focus Visible ─── */
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* ═══════════════════════════════════════════
+   1. HEADER
+   ═══════════════════════════════════════════ */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--hair);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 32px;
+  z-index: 100;
+}
+
+.header-left,
+.header-right {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.header-center {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+/* ═══════════════════════════════════════════
+   2. SIDE DETAILS
+   ═══════════════════════════════════════════ */
+.side-detail {
+  position: fixed;
+  top: 50%;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  writing-mode: vertical-rl;
+  z-index: 50;
+}
+
+.side-detail--left {
+  left: 16px;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.side-detail--right {
+  right: 16px;
+  transform: translateY(-50%);
+}
+
+/* ═══════════════════════════════════════════
+   3. HERO SECTION
+   ═══════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px 60px;
+}
+
+.hero-svg {
+  width: clamp(280px, 55vw, 720px);
+  height: auto;
+  margin-bottom: 48px;
+}
+
+.hero-text {
+  font-family: var(--sans);
+  font-size: clamp(13px, 1.4vw, 16px);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 48px;
+  max-width: 480px;
+  text-align: center;
+}
+
+/* ─── CTA Button ─── */
+.btn-cta {
+  display: inline-block;
+  padding: 20px 56px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--ink);
+  cursor: pointer;
+  min-height: 44px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-cta:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+}
+
+.btn-cta:active {
+  transform: scale(0.97);
+  background: var(--ink);
+  color: var(--paper);
+  transition: transform 0.12s ease;
+}
+
+/* ─── Privacy trigger text ─── */
+.privacy-trigger {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 24px;
+}
+
+.privacy-link {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ═══════════════════════════════════════════
+   4. CONTACTS SECTION
+   ═══════════════════════════════════════════ */
+.contacts {
+  padding: 80px 24px 60px;
+  max-width: 640px;
+  margin: 0 auto;
+  scroll-margin-top: 320px;
+}
+
+.contact-title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.contact-subtitle {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+/* ─── Contact Rows ─── */
+.contact-row {
+  border-top: 1px solid var(--hair);
+  padding: 32px 0;
+  text-align: center;
+}
+
+.contact-row:last-of-type {
+  border-bottom: 1px solid var(--hair);
+}
+
+.contact-label {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.contact-value {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.contact-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--hair);
+  text-decoration: none;
+  min-height: 44px;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.contact-action .arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contact-action:hover {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+  .contact-action:hover .arrow {
+    transform: translateX(4px);
+  }
+}
+
+.contact-action:active {
+  transform: scale(0.97);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* ─── Contact Note ─── */
+.contact-note {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--muted);
+  text-align: center;
+  max-width: 480px;
+  margin: 48px auto 0;
+  padding: 0 24px;
+}
+
+/* ═══════════════════════════════════════════
+   5. FOOTER
+   ═══════════════════════════════════════════ */
+.site-footer {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 24px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+}
+
+/* ═══════════════════════════════════════════
+   6. PRIVACY MODAL
+   ═══════════════════════════════════════════ */
+.privacy-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+}
+
+.privacy-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(21, 32, 46, 0.85);
+  backdrop-filter: blur(12px);
+}
+
+.privacy-modal__content {
+  position: relative;
+  background: var(--paper);
+  width: 90%;
+  max-width: 680px;
+  max-height: 85vh;
+  padding: 56px 48px;
+  overflow-y: auto;
+  margin: auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.privacy-modal__close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: var(--muted);
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.privacy-modal__title {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(24px, 3.5vw, 36px);
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+  color: var(--ink);
+}
+
+.privacy-modal__text {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.privacy-modal__text p {
+  margin-bottom: 16px;
+}
+
+.privacy-modal__text strong {
+  font-weight: 700;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════ */
+
+/* ─── Tablets & Mobile (<760px) ─── */
+@media (max-width: 760px) {
+  .site-header {
+    padding: 0 16px;
+  }
+
+  .header-center {
+    display: none;
+  }
+
+  .side-detail {
+    display: none;
+  }
+
+  .hero-svg {
+    width: 85vw;
+    max-width: 400px;
+  }
+
+  .contacts {
+    scroll-margin-top: 160px;
+  }
+
+  .site-footer {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+    padding: 24px 16px;
+  }
+
+  .privacy-modal__content {
+    padding: 40px 24px;
+    max-height: 90vh;
+  }
+}
+
+/* ─── Touch devices ─── */
+@media (hover: none) and (pointer: coarse) {
+  .privacy-trigger {
+    margin-top: 14px;
+  }
+}
+
+/* ─── Large screens (>1440px) ─── */
+@media (min-width: 1440px) {
+  .hero-svg {
+    width: 55vw;
+    max-width: 800px;
+  }
+}
