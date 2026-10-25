@@ -2,7 +2,26 @@
    BESTUZHEV.TECH — Main Component
    ═══════════════════════════════════════════ */
 
+import { useEffect } from 'react';
+
 function App() {
+  useEffect(() => {
+    const ctaButton = document.querySelector('.btn-cta') as HTMLAnchorElement | null;
+    if (ctaButton) {
+      const handleClick = (e: Event) => {
+        e.preventDefault();
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+          const offset = window.innerWidth <= 760 ? 160 : 320;
+          const top = contactSection.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      };
+      ctaButton.addEventListener('click', handleClick);
+      return () => ctaButton.removeEventListener('click', handleClick);
+    }
+  }, []);
+
   return (
     <>
       {/* ═══════════════════════════════════════════

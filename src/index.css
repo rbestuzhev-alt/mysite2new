@@ -20,6 +20,10 @@
 }
 
 /* ─── Base (mobile-first) ─── */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--paper);
   color: var(--ink);
@@ -114,6 +118,7 @@ body {
 
 /* ─── CTA Button ─── */
 .btn-cta {
+  position: relative;
   display: inline-block;
   padding: 18px 40px;
   font-family: var(--sans);
@@ -127,14 +132,15 @@ body {
   border: 1px solid var(--ink);
   cursor: pointer;
   min-height: 44px;
+  overflow: hidden;
   -webkit-tap-highlight-color: transparent;
+  transition: transform 0.12s ease, background 0.12s ease, color 0.12s ease;
 }
 
 .btn-cta:active {
   transform: scale(0.97);
   background: var(--ink);
   color: var(--paper);
-  transition: transform 0.12s ease;
 }
 
 /* ─── Privacy trigger text ─── */
@@ -233,6 +239,7 @@ body {
   text-decoration: none;
   min-height: 44px;
   -webkit-tap-highlight-color: transparent;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.12s ease;
 }
 
 .contact-action .arrow {
