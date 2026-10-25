@@ -101,8 +101,8 @@ body {
   margin-bottom: 48px;
 }
 
-/* ─── Hero Text ─── */
-.hero-text {
+/* ─── Hero Scramble Text ─── */
+.hero__scramble {
   font-family: var(--sans);
   font-size: 13px;
   font-weight: 500;
@@ -114,6 +114,24 @@ body {
   max-width: 480px;
   text-align: center;
   padding: 0 16px;
+}
+
+.hero__scramble-line {
+  display: block;
+  min-height: 1.8em;
+}
+
+@media (min-width: 761px) {
+  .hero__scramble {
+    font-size: clamp(13px, 1.4vw, 16px);
+    padding: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__scramble-line::before {
+    content: attr(data-text);
+  }
 }
 
 /* ─── CTA Button ─── */
@@ -471,11 +489,7 @@ html, body {
     max-width: 720px;
   }
 
-  /* Hero Text */
-  .hero-text {
-    font-size: clamp(13px, 1.4vw, 16px);
-    padding: 0;
-  }
+
 
   /* CTA Button */
   .btn-cta {

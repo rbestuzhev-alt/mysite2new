@@ -22,6 +22,92 @@ function App() {
       window.addEventListener('load', handleLoad);
     }
 
+    // === Scramble text effect ===
+    const CHARS = 'АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ0123456789!@#$%&*<>?/';
+    
+    const scrambleLine = (element: HTMLElement, duration: number) => {
+      const text = element.getAttribute('data-text');
+      if (!text) return;
+      
+      const chars = text.split('');
+      const totalFrames = Math.round(duration / 16);
+      let frame = 0;
+      
+      const fixed = new Array(chars.length).fill(false);
+      
+      const render = () => {
+        let result = '';
+        for (let i = 0; i < chars.length; i++) {
+          if (fixed[i]) {
+            result += chars[i];
+          } else {
+            result += CHARS[Math.floor(Math.random() * CHARS.length)];
+          }
+        }
+        element.textContent = result;
+      };
+      
+      const tick = () => {
+        frame++;
+        const progress = frame / totalFrames;
+        
+        const fixedCount = Math.floor(progress * chars.length);
+        for (let i = 0; i < fixedCount; i++) {
+          fixed[i] = true;
+        }
+        
+        render();
+        
+        if (frame < totalFrames) {
+          requestAnimationFrame(tick);
+        } else {
+          element.textContent = text;
+        }
+      };
+      
+      render();
+      requestAnimationFrame(tick);
+    };
+    
+    const startScramble = () => {
+      const lines = document.querySelectorAll('.hero__scramble-line') as NodeListOf<HTMLElement>;
+      if (!lines.length) return;
+      
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) {
+        lines.forEach(line => {
+          const text = line.getAttribute('data-text');
+          if (text) line.textContent = text;
+        });
+        return;
+      }
+      
+      lines.forEach((line, index) => {
+        const duration = 1200 + index * 300;
+        setTimeout(() => {
+          scrambleLine(line, duration);
+        }, index * 200);
+      });
+    };
+    
+    const scrambleObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          if (document.body.classList.contains('animations-ready')) {
+            startScramble();
+            scrambleObserver.disconnect();
+          }
+        }
+      });
+    });
+    
+    scrambleObserver.observe(document.body, { attributes: true });
+    
+    if (document.body.classList.contains('animations-ready')) {
+      startScramble();
+      scrambleObserver.disconnect();
+    }
+
     // === Live clock (Barnaul timezone) ===
     const clockElement = document.getElementById('header-clock');
     let clockInterval: ReturnType<typeof setInterval> | null = null;
@@ -135,6 +221,7 @@ function App() {
     // Cleanup
     return () => {
       clearTimeout(animationsTimeout);
+      scrambleObserver.disconnect();
       if (clockInterval) {
         clearInterval(clockInterval);
       }
@@ -237,11 +324,11 @@ function App() {
             </g>
           </svg>
 
-          {/* 3.2. Hero text */}
-          <p className="hero-text">
-            пока тут ничего нет,<br />
-            но не переживайте — я найду для вас решение.
-          </p>
+          {/* 3.2. Hero text with scramble effect */}
+          <div className="hero__scramble" aria-label="Пока тут ничего нет, но не переживайте — я найду для вас решение.">
+            <div className="hero__scramble-line" data-text="ПОКА ТУТ НИЧЕГО НЕТ,"></div>
+            <div className="hero__scramble-line" data-text="НО НЕ ПЕРЕЖИВАЙТЕ — Я НАЙДУ ДЛЯ ВАС РЕШЕНИЕ."></div>
+          </div>
 
           {/* 3.3. CTA Button */}
           <a href="#contact" className="btn-cta" aria-label="Перейти к контактам">
