@@ -235,13 +235,23 @@ body {
 
 /* ─── Contact Rows ─── */
 .contact-row {
-  border-top: 1px solid var(--hair);
   padding: 32px 0;
   text-align: center;
+  position: relative;
 }
 
-.contact-row:last-of-type {
-  border-bottom: 1px solid var(--hair);
+.contact-row::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: var(--hair);
+}
+
+.contact-row:first-child::before {
+  display: none;
 }
 
 .contact-label {
