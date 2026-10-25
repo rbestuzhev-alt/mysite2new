@@ -6,6 +6,17 @@ import { useEffect } from 'react';
 
 function App() {
   useEffect(() => {
+    // === Page load fade-in ===
+    const showPage = () => {
+      document.body.classList.add('is-loaded');
+    };
+
+    if (document.readyState === 'complete') {
+      showPage();
+    } else {
+      window.addEventListener('load', showPage);
+    }
+
     // === Live clock (Barnaul timezone) ===
     const clockElement = document.getElementById('header-clock');
     let clockInterval: ReturnType<typeof setInterval> | null = null;
