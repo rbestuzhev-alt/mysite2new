@@ -6,6 +6,22 @@ import { useEffect } from 'react';
 
 function App() {
   useEffect(() => {
+    // === Animations ready (1 second delay) ===
+    const enableAnimations = () => {
+      document.body.classList.add('animations-ready');
+    };
+    
+    let animationsTimeout: ReturnType<typeof setTimeout>;
+    
+    if (document.readyState === 'complete') {
+      animationsTimeout = setTimeout(enableAnimations, 1000);
+    } else {
+      const handleLoad = () => {
+        animationsTimeout = setTimeout(enableAnimations, 1000);
+      };
+      window.addEventListener('load', handleLoad);
+    }
+
     // === Live clock (Barnaul timezone) ===
     const clockElement = document.getElementById('header-clock');
     let clockInterval: ReturnType<typeof setInterval> | null = null;
@@ -118,6 +134,7 @@ function App() {
 
     // Cleanup
     return () => {
+      clearTimeout(animationsTimeout);
       if (clockInterval) {
         clearInterval(clockInterval);
       }
