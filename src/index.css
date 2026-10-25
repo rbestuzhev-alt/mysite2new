@@ -368,9 +368,9 @@ html, body {
   z-index: 10000;
   background: var(--paper);
   width: 92%;
-  max-width: 680px;
+  max-width: 720px;
   max-height: 90vh;
-  padding: 40px 24px;
+  padding: 48px 40px;
   overflow-y: auto;
   border-radius: 4px;
   opacity: 0;
@@ -386,11 +386,12 @@ html, body {
 
 .privacy-modal__close {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 20px;
+  right: 20px;
   background: none;
   border: none;
-  font-size: 28px;
+  font-size: 24px;
+  font-weight: 300;
   line-height: 1;
   color: var(--muted);
   cursor: pointer;
@@ -409,28 +410,45 @@ html, body {
 }
 
 .privacy-modal__title {
-  font-family: var(--sans);
-  font-weight: 700;
-  font-size: 28px;
-  letter-spacing: -0.02em;
-  margin-bottom: 24px;
-  line-height: 1.2;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
   color: var(--ink);
+  margin: 0 0 40px 0;
+}
+
+.privacy-modal__title em {
+  font-style: italic;
+  font-weight: 400;
 }
 
 .privacy-modal__text {
   font-family: var(--sans);
-  font-size: 14px;
+}
+
+.privacy-modal__text-item {
+  font-family: var(--sans);
+  font-size: 15px;
   line-height: 1.6;
+  color: var(--ink);
+  margin: 0 0 24px 0;
+}
+
+.privacy-modal__text-item:last-child {
+  margin-bottom: 0;
+}
+
+.privacy-modal__text-item strong {
+  font-family: var(--sans);
+  font-weight: 600;
   color: var(--ink);
 }
 
-.privacy-modal__text p {
-  margin-bottom: 16px;
-}
-
-.privacy-modal__text strong {
-  font-weight: 700;
+.privacy-modal__text-item span {
+  font-weight: 400;
+  color: var(--ink);
 }
 
 /* ═══════════════════════════════════════════
@@ -509,27 +527,14 @@ html, body {
   /* Privacy Modal */
   .privacy-modal__content {
     width: 90%;
+    max-width: 720px;
     max-height: 85vh;
-    padding: 56px 48px;
+    padding: 64px 56px;
   }
 
   .privacy-modal__close {
     top: 24px;
     right: 24px;
-  }
-
-  .privacy-modal__title {
-    font-size: clamp(24px, 3.5vw, 36px);
-    margin-bottom: 32px;
-  }
-
-  .privacy-modal__text {
-    font-size: 15px;
-    line-height: 1.7;
-  }
-
-  .privacy-modal__text p {
-    margin-bottom: 20px;
   }
 }
 
