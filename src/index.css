@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════
-   BESTUZHEV.TECH — Styles
+   BESTUZHEV.TECH — Mobile-First Styles
    ═══════════════════════════════════════════ */
 
 /* ─── CSS Variables ─── */
@@ -19,7 +19,7 @@
   padding: 0;
 }
 
-/* ─── Base ─── */
+/* ─── Base (mobile-first) ─── */
 body {
   background: var(--paper);
   color: var(--ink);
@@ -36,7 +36,7 @@ body {
 }
 
 /* ═══════════════════════════════════════════
-   1. HEADER
+   1. HEADER (mobile-first)
    ═══════════════════════════════════════════ */
 .site-header {
   position: fixed;
@@ -49,7 +49,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 32px;
+  padding: 0 16px;
   z-index: 100;
 }
 
@@ -66,34 +66,18 @@ body {
   font-size: 13px;
   color: var(--muted);
   letter-spacing: 0.05em;
+  display: none; /* hidden on mobile */
 }
 
 /* ═══════════════════════════════════════════
-   2. SIDE DETAILS
+   2. SIDE DETAILS (hidden on mobile)
    ═══════════════════════════════════════════ */
 .side-detail {
-  position: fixed;
-  top: 50%;
-  font-family: var(--sans);
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 0.1em;
-  writing-mode: vertical-rl;
-  z-index: 50;
-}
-
-.side-detail--left {
-  left: 16px;
-  transform: translateY(-50%) rotate(180deg);
-}
-
-.side-detail--right {
-  right: 16px;
-  transform: translateY(-50%);
+  display: none; /* hidden on mobile */
 }
 
 /* ═══════════════════════════════════════════
-   3. HERO SECTION
+   3. HERO SECTION (mobile-first)
    ═══════════════════════════════════════════ */
 .hero {
   min-height: 100vh;
@@ -105,15 +89,18 @@ body {
   padding: 80px 24px 60px;
 }
 
+/* ─── SVG 404 ─── */
 .hero-svg {
-  width: clamp(280px, 55vw, 720px);
+  width: 85vw;
+  max-width: 400px;
   height: auto;
   margin-bottom: 48px;
 }
 
+/* ─── Hero Text ─── */
 .hero-text {
   font-family: var(--sans);
-  font-size: clamp(13px, 1.4vw, 16px);
+  font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -122,12 +109,13 @@ body {
   margin-bottom: 48px;
   max-width: 480px;
   text-align: center;
+  padding: 0 16px;
 }
 
 /* ─── CTA Button ─── */
 .btn-cta {
   display: inline-block;
-  padding: 20px 56px;
+  padding: 18px 40px;
   font-family: var(--sans);
   font-size: 13px;
   font-weight: 600;
@@ -140,13 +128,6 @@ body {
   cursor: pointer;
   min-height: 44px;
   -webkit-tap-highlight-color: transparent;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .btn-cta:hover {
-    background: var(--ink);
-    color: var(--paper);
-  }
 }
 
 .btn-cta:active {
@@ -163,7 +144,8 @@ body {
   letter-spacing: 0.05em;
   color: var(--muted);
   text-align: center;
-  margin-top: 24px;
+  margin-top: 14px;
+  padding: 0 16px;
 }
 
 .privacy-link {
@@ -173,19 +155,19 @@ body {
 }
 
 /* ═══════════════════════════════════════════
-   4. CONTACTS SECTION
+   4. CONTACTS SECTION (mobile-first)
    ═══════════════════════════════════════════ */
 .contacts {
-  padding: 80px 24px 60px;
+  padding: 60px 24px;
   max-width: 640px;
   margin: 0 auto;
-  scroll-margin-top: 320px;
+  scroll-margin-top: 160px;
 }
 
 .contact-title {
   font-family: var(--serif);
   font-weight: 600;
-  font-size: clamp(32px, 5vw, 56px);
+  font-size: 32px;
   line-height: 1.1;
   letter-spacing: -0.01em;
   color: var(--ink);
@@ -201,7 +183,7 @@ body {
   text-transform: uppercase;
   color: var(--muted);
   text-align: center;
-  margin-bottom: 64px;
+  margin-bottom: 48px;
 }
 
 /* ─── Contact Rows ─── */
@@ -227,20 +209,21 @@ body {
 
 .contact-value {
   font-family: var(--serif);
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 500;
   color: var(--ink);
   margin-bottom: 16px;
   display: block;
+  word-break: break-word;
 }
 
 .contact-action {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 24px;
+  padding: 12px 20px;
   font-family: var(--sans);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -249,24 +232,12 @@ body {
   border: 1px solid var(--hair);
   text-decoration: none;
   min-height: 44px;
-  transition: background 0.3s, color 0.3s, border-color 0.3s;
   -webkit-tap-highlight-color: transparent;
 }
 
 .contact-action .arrow {
   display: inline-block;
   transition: transform 0.3s ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .contact-action:hover {
-    background: var(--ink);
-    color: var(--paper);
-    border-color: var(--ink);
-  }
-  .contact-action:hover .arrow {
-    transform: translateX(4px);
-  }
 }
 
 .contact-action:active {
@@ -279,32 +250,30 @@ body {
 .contact-note {
   font-family: var(--serif);
   font-style: italic;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.6;
   color: var(--muted);
   text-align: center;
   max-width: 480px;
-  margin: 48px auto 0;
-  padding: 0 24px;
+  margin: 32px auto 0;
+  padding: 0 16px;
 }
 
 /* ═══════════════════════════════════════════
-   5. FOOTER
+   5. FOOTER (mobile-first)
    ═══════════════════════════════════════════ */
 .site-footer {
   background: var(--ink);
   color: var(--paper);
-  padding: 24px 32px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 24px 16px;
   font-family: var(--sans);
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.05em;
+  text-align: center;
 }
 
 /* ═══════════════════════════════════════════
-   6. PRIVACY MODAL
+   6. PRIVACY MODAL (mobile-first)
    ═══════════════════════════════════════════ */
 .privacy-modal {
   position: fixed;
@@ -318,30 +287,33 @@ body {
   inset: 0;
   background: rgba(21, 32, 46, 0.85);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .privacy-modal__content {
   position: relative;
   background: var(--paper);
-  width: 90%;
+  width: 92%;
   max-width: 680px;
-  max-height: 85vh;
-  padding: 56px 48px;
+  max-height: 90vh;
+  padding: 40px 24px;
   overflow-y: auto;
   margin: auto;
   top: 50%;
   transform: translateY(-50%);
+  border-radius: 4px;
 }
 
 .privacy-modal__close {
   position: absolute;
-  top: 24px;
-  right: 24px;
+  top: 16px;
+  right: 16px;
   background: none;
   border: none;
   font-size: 28px;
   color: var(--muted);
   cursor: pointer;
+  padding: 8px;
   min-height: 44px;
   min-width: 44px;
   display: flex;
@@ -352,16 +324,17 @@ body {
 .privacy-modal__title {
   font-family: var(--sans);
   font-weight: 700;
-  font-size: clamp(24px, 3.5vw, 36px);
+  font-size: 28px;
   letter-spacing: -0.02em;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
+  line-height: 1.2;
   color: var(--ink);
 }
 
 .privacy-modal__text {
   font-family: var(--sans);
-  font-size: 15px;
-  line-height: 1.7;
+  font-size: 14px;
+  line-height: 1.6;
   color: var(--ink);
 }
 
@@ -374,54 +347,154 @@ body {
 }
 
 /* ═══════════════════════════════════════════
-   RESPONSIVE
+   TABLET & DESKTOP (min-width: 761px)
    ═══════════════════════════════════════════ */
-
-/* ─── Tablets & Mobile (<760px) ─── */
-@media (max-width: 760px) {
+@media (min-width: 761px) {
+  /* Header */
   .site-header {
-    padding: 0 16px;
+    padding: 0 32px;
   }
 
   .header-center {
-    display: none;
+    display: block;
   }
 
+  /* Side Details */
   .side-detail {
-    display: none;
+    display: block;
+    position: fixed;
+    top: 50%;
+    font-family: var(--sans);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    writing-mode: vertical-rl;
+    z-index: 50;
   }
 
+  .side-detail--left {
+    left: 16px;
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  .side-detail--right {
+    right: 16px;
+    transform: translateY(-50%);
+  }
+
+  /* Hero SVG */
   .hero-svg {
-    width: 85vw;
-    max-width: 400px;
+    width: clamp(280px, 55vw, 720px);
+    max-width: 720px;
   }
 
-  .contacts {
-    scroll-margin-top: 160px;
+  /* Hero Text */
+  .hero-text {
+    font-size: clamp(13px, 1.4vw, 16px);
+    padding: 0;
   }
 
-  .site-footer {
-    flex-direction: column;
-    gap: 8px;
-    text-align: center;
-    padding: 24px 16px;
+  /* CTA Button */
+  .btn-cta {
+    padding: 20px 56px;
   }
 
-  .privacy-modal__content {
-    padding: 40px 24px;
-    max-height: 90vh;
-  }
-}
-
-/* ─── Touch devices ─── */
-@media (hover: none) and (pointer: coarse) {
+  /* Privacy trigger */
   .privacy-trigger {
-    margin-top: 14px;
+    margin-top: 24px;
+    padding: 0;
+  }
+
+  /* Contacts */
+  .contacts {
+    padding: 80px 24px 60px;
+    scroll-margin-top: 320px;
+  }
+
+  .contact-title {
+    font-size: clamp(32px, 5vw, 56px);
+  }
+
+  .contact-subtitle {
+    margin-bottom: 64px;
+  }
+
+  .contact-value {
+    font-size: 22px;
+  }
+
+  .contact-action {
+    padding: 12px 24px;
+    font-size: 12px;
+  }
+
+  .contact-note {
+    font-size: 16px;
+    margin: 48px auto 0;
+    padding: 0;
+  }
+
+  /* Footer */
+  .site-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 32px;
+    font-size: 12px;
+    text-align: left;
+  }
+
+  /* Privacy Modal */
+  .privacy-modal__content {
+    width: 90%;
+    max-height: 85vh;
+    padding: 56px 48px;
+  }
+
+  .privacy-modal__close {
+    top: 24px;
+    right: 24px;
+  }
+
+  .privacy-modal__title {
+    font-size: clamp(24px, 3.5vw, 36px);
+    margin-bottom: 32px;
+  }
+
+  .privacy-modal__text {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .privacy-modal__text p {
+    margin-bottom: 20px;
   }
 }
 
-/* ─── Large screens (>1440px) ─── */
-@media (min-width: 1440px) {
+/* ═══════════════════════════════════════════
+   HOVER STATES (pointer devices only)
+   ═══════════════════════════════════════════ */
+@media (hover: hover) and (pointer: fine) {
+  .btn-cta:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .contact-action:hover {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+
+  .contact-action:hover .arrow {
+    transform: translateX(4px);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   LARGE SCREENS (min-width: 1441px)
+   ═══════════════════════════════════════════ */
+@media (min-width: 1441px) {
   .hero-svg {
     width: 55vw;
     max-width: 800px;

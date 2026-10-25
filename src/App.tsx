@@ -5,14 +5,18 @@
 function App() {
   return (
     <>
-      {/* ═══ HEADER ═══ */}
+      {/* ═══════════════════════════════════════════
+          1. HEADER
+          ═══════════════════════════════════════════ */}
       <header className="site-header">
         <span className="header-left">роман бестужев</span>
         <span className="header-center">03:00:45</span>
         <span className="header-right">веб-разработка.</span>
       </header>
 
-      {/* ═══ SIDE DETAILS ═══ */}
+      {/* ═══════════════════════════════════════════
+          2. SIDE DETAILS (hidden on mobile, visible on desktop)
+          ═══════════════════════════════════════════ */}
       <aside className="side-detail side-detail--left" aria-hidden="true">
         53.3477° n · 83.7777° e
       </aside>
@@ -20,11 +24,15 @@ function App() {
         656000 · барнаул
       </aside>
 
-      {/* ═══ MAIN CONTENT ═══ */}
+      {/* ═══════════════════════════════════════════
+          MAIN CONTENT
+          ═══════════════════════════════════════════ */}
       <main>
-        {/* ═══ HERO SECTION ═══ */}
+        {/* ═══════════════════════════════════════════
+            3. HERO SECTION
+            ═══════════════════════════════════════════ */}
         <section className="hero">
-          {/* SVG 404 */}
+          {/* 3.1. SVG «404» */}
           <svg
             className="hero-svg"
             viewBox="0 0 420 160"
@@ -77,18 +85,18 @@ function App() {
             </g>
           </svg>
 
-          {/* Hero text */}
+          {/* 3.2. Hero text */}
           <p className="hero-text">
-            Пока тут ничего нет,<br />
+            пока тут ничего нет,<br />
             но не переживайте — я найду для вас решение.
           </p>
 
-          {/* CTA Button */}
+          {/* 3.3. CTA Button */}
           <a href="#contact" className="btn-cta" aria-label="Перейти к контактам">
             Связаться
           </a>
 
-          {/* Privacy note */}
+          {/* 3.4. Privacy trigger text */}
           <p className="privacy-trigger">
             Нажимая кнопку, вы соглашаетесь с{' '}
             <a href="#" className="privacy-link">
@@ -97,12 +105,19 @@ function App() {
           </p>
         </section>
 
-        {/* ═══ CONTACTS SECTION ═══ */}
+        {/* ═══════════════════════════════════════════
+            4. CONTACTS SECTION
+            ═══════════════════════════════════════════ */}
         <section id="contact" className="contacts">
+          {/* 4.1. Section title */}
           <h2 className="contact-title">найдём решение вместе.</h2>
+
+          {/* 4.2. Subtitle */}
           <p className="contact-subtitle">Отвечу вам в течение дня</p>
 
-          {/* Contact Row 1 — Phone */}
+          {/* 4.3. Contact blocks */}
+
+          {/* Block 1 — Phone */}
           <div className="contact-row">
             <p className="contact-label">Телефон</p>
             <span className="contact-value">+7 921 666 90 66</span>
@@ -115,7 +130,7 @@ function App() {
             </a>
           </div>
 
-          {/* Contact Row 2 — Email */}
+          {/* Block 2 — Email */}
           <div className="contact-row">
             <p className="contact-label">Почта</p>
             <span className="contact-value">fullstack@bestuzhev.tech</span>
@@ -128,7 +143,7 @@ function App() {
             </a>
           </div>
 
-          {/* Contact Row 3 — Telegram */}
+          {/* Block 3 — Telegram */}
           <div className="contact-row">
             <p className="contact-label">Telegram</p>
             <span className="contact-value">rbestuzhev</span>
@@ -143,7 +158,7 @@ function App() {
             </a>
           </div>
 
-          {/* Contact Row 4 — MAX */}
+          {/* Block 4 — MAX */}
           <div className="contact-row">
             <p className="contact-label">MAX</p>
             <span className="contact-value">Роман Бестужев</span>
@@ -158,20 +173,24 @@ function App() {
             </a>
           </div>
 
-          {/* Italic note */}
+          {/* 4.4. Italic note */}
           <p className="contact-note">
             эта страница — временная заглушка: постоянный сайт уже в разработке.
           </p>
         </section>
       </main>
 
-      {/* ═══ FOOTER ═══ */}
+      {/* ═══════════════════════════════════════════
+          5. FOOTER
+          ═══════════════════════════════════════════ */}
       <footer className="site-footer">
         <span>роман бестужев — веб-разработка.</span>
         <span>барнаул, алтайский край · 656000</span>
       </footer>
 
-      {/* ═══ PRIVACY MODAL (hidden, JS will be added later) ═══ */}
+      {/* ═══════════════════════════════════════════
+          6. PRIVACY MODAL (hidden, JS will be added later)
+          ═══════════════════════════════════════════ */}
       <div
         id="privacy-modal"
         className="privacy-modal"
