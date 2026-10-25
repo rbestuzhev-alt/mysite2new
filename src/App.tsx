@@ -6,20 +6,112 @@ import { useEffect } from 'react';
 
 function App() {
   useEffect(() => {
+    // Smooth scroll to contacts
     const ctaButton = document.querySelector('.btn-cta') as HTMLAnchorElement | null;
+    const handleCtaClick = (e: Event) => {
+      e.preventDefault();
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        const offset = window.innerWidth <= 760 ? 160 : 320;
+        const top = contactSection.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    };
     if (ctaButton) {
-      const handleClick = (e: Event) => {
-        e.preventDefault();
-        const contactSection = document.getElementById('contact');
-        if (contactSection) {
-          const offset = window.innerWidth <= 760 ? 160 : 320;
-          const top = contactSection.getBoundingClientRect().top + window.pageYOffset - offset;
-          window.scrollTo({ top, behavior: 'smooth' });
-        }
-      };
-      ctaButton.addEventListener('click', handleClick);
-      return () => ctaButton.removeEventListener('click', handleClick);
+      ctaButton.addEventListener('click', handleCtaClick);
     }
+
+    // Privacy modal logic
+    const modal = document.getElementById('privacy-modal');
+    const closeBtn = modal?.querySelector('.privacy-modal__close') as HTMLButtonElement | null;
+    const overlay = modal?.querySelector('.privacy-modal__overlay') as HTMLDivElement | null;
+    const trigger = document.querySelector('.privacy-link') as HTMLAnchorElement | null;
+    let lastFocusedElement: Element | null = null;
+
+    const openModal = () => {
+      lastFocusedElement = document.activeElement;
+      document.body.style.overflow = 'hidden';
+      modal?.classList.add('active');
+      modal?.setAttribute('aria-hidden', 'false');
+      setTimeout(() => closeBtn?.focus(), 100);
+    };
+
+    const closeModal = () => {
+      modal?.classList.remove('active');
+      modal?.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (lastFocusedElement && lastFocusedElement instanceof HTMLElement) {
+        lastFocusedElement.focus();
+      }
+    };
+
+    const handleTriggerClick = (e: Event) => {
+      e.preventDefault();
+      openModal();
+    };
+
+    // Open modal on trigger click
+    if (trigger) {
+      trigger.addEventListener('click', handleTriggerClick);
+    }
+
+    // Close modal on close button click
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeModal);
+    }
+
+    // Close modal on overlay click
+    if (overlay) {
+      overlay.addEventListener('click', closeModal);
+    }
+
+    // Close modal on Escape key
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && modal?.classList.contains('active')) {
+        closeModal();
+      }
+    };
+    document.addEventListener('keydown', handleEscape);
+
+    // Focus trap inside modal
+    const handleTab = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab' || !modal?.classList.contains('active')) return;
+      
+      const focusable = modal?.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      if (!focusable || focusable.length === 0) return;
+
+      const first = focusable[0] as HTMLElement;
+      const last = focusable[focusable.length - 1] as HTMLElement;
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    modal?.addEventListener('keydown', handleTab);
+
+    // Cleanup
+    return () => {
+      if (ctaButton) {
+        ctaButton.removeEventListener('click', handleCtaClick);
+      }
+      if (trigger) {
+        trigger.removeEventListener('click', handleTriggerClick);
+      }
+      if (closeBtn) {
+        closeBtn.removeEventListener('click', closeModal);
+      }
+      if (overlay) {
+        overlay.removeEventListener('click', closeModal);
+      }
+      document.removeEventListener('keydown', handleEscape);
+      modal?.removeEventListener('keydown', handleTab);
+    };
   }, []);
 
   return (
@@ -208,7 +300,7 @@ function App() {
       </footer>
 
       {/* ═══════════════════════════════════════════
-          6. PRIVACY MODAL (hidden, JS will be added later)
+          6. PRIVACY MODAL
           ═══════════════════════════════════════════ */}
       <div
         id="privacy-modal"
@@ -216,10 +308,11 @@ function App() {
         role="dialog"
         aria-modal="true"
         aria-labelledby="privacy-title"
+        aria-hidden="true"
       >
         <div className="privacy-modal__overlay"></div>
         <div className="privacy-modal__content">
-          <button className="privacy-modal__close" aria-label="Закрыть">
+          <button className="privacy-modal__close" aria-label="Закрыть окно политики конфиденциальности">
             &times;
           </button>
           <h2 id="privacy-title" className="privacy-modal__title">

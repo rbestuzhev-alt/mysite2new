@@ -280,35 +280,64 @@ body {
 }
 
 /* ═══════════════════════════════════════════
-   6. PRIVACY MODAL (mobile-first)
+   6. PRIVACY MODAL (mobile-first, animated)
    ═══════════════════════════════════════════ */
+
+/* Scrollbar gutter для предотвращения скачков */
+html, body {
+  scrollbar-gutter: stable;
+}
+
 .privacy-modal {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.privacy-modal.active {
+  pointer-events: auto;
 }
 
 .privacy-modal__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(21, 32, 46, 0.85);
-  backdrop-filter: blur(12px);
+  background: rgba(21, 32, 46, 0);
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+  transform: translateZ(0);
   -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.privacy-modal.active .privacy-modal__overlay {
+  background: rgba(21, 32, 46, 0.85);
+  opacity: 1;
 }
 
 .privacy-modal__content {
   position: relative;
+  z-index: 10000;
   background: var(--paper);
   width: 92%;
   max-width: 680px;
   max-height: 90vh;
   padding: 40px 24px;
   overflow-y: auto;
-  margin: auto;
-  top: 50%;
-  transform: translateY(-50%);
   border-radius: 4px;
+  opacity: 0;
+  transform: translateY(30px) translateZ(0);
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.privacy-modal.active .privacy-modal__content {
+  opacity: 1;
+  transform: translateY(0) translateZ(0);
 }
 
 .privacy-modal__close {
@@ -318,14 +347,21 @@ body {
   background: none;
   border: none;
   font-size: 28px;
+  line-height: 1;
   color: var(--muted);
   cursor: pointer;
   padding: 8px;
+  transition: color 0.3s ease, transform 0.3s ease;
   min-height: 44px;
   min-width: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.privacy-modal__close:hover {
+  color: var(--ink);
+  transform: rotate(90deg);
 }
 
 .privacy-modal__title {
@@ -477,6 +513,7 @@ body {
     margin-bottom: 20px;
   }
 }
+
 
 /* ═══════════════════════════════════════════
    HOVER STATES (pointer devices only)
