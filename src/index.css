@@ -77,7 +77,30 @@ body {
    2. SIDE DETAILS (hidden on mobile)
    ═══════════════════════════════════════════ */
 .side-detail {
-  display: none; /* hidden on mobile */
+  position: fixed;
+  top: 50%;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  writing-mode: vertical-rl;
+  z-index: 10;
+  display: none;
+}
+
+.side-detail--left {
+  left: 16px;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.side-detail--right {
+  right: 16px;
+}
+
+@media (min-width: 761px) {
+  .side-detail {
+    display: block;
+  }
 }
 
 /* ═══════════════════════════════════════════
@@ -419,28 +442,7 @@ html, body {
     display: block;
   }
 
-  /* Side Details */
-  .side-detail {
-    display: block;
-    position: fixed;
-    top: 50%;
-    font-family: var(--sans);
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    writing-mode: vertical-rl;
-    z-index: 50;
-  }
 
-  .side-detail--left {
-    left: 16px;
-    transform: translateY(-50%) rotate(180deg);
-  }
-
-  .side-detail--right {
-    right: 16px;
-    transform: translateY(-50%);
-  }
 
   /* Hero SVG */
   .hero-svg {

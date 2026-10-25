@@ -152,12 +152,12 @@ function App() {
       {/* ═══════════════════════════════════════════
           2. SIDE DETAILS (hidden on mobile, visible on desktop)
           ═══════════════════════════════════════════ */}
-      <aside className="side-detail side-detail--left" aria-hidden="true">
+      <div className="side-detail side-detail--left" aria-hidden="true">
         53.3477° n · 83.7777° e
-      </aside>
-      <aside className="side-detail side-detail--right" aria-hidden="true">
+      </div>
+      <div className="side-detail side-detail--right" aria-hidden="true">
         656000 · барнаул
-      </aside>
+      </div>
 
       {/* ═══════════════════════════════════════════
           MAIN CONTENT
