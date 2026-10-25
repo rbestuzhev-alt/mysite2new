@@ -56,8 +56,6 @@
 
       html {
         scroll-behavior: smooth;
-        background: var(--ink);
-        overscroll-behavior: none;
       }
 
       /* Selection styles */
@@ -110,15 +108,6 @@
 
       body.is-loaded {
         opacity: 1;
-      }
-
-      /* Только для мобильных — добавляем padding для safe area */
-      @media (max-width: 760px) {
-        @supports (padding-bottom: env(safe-area-inset-bottom)) {
-          body {
-            padding-bottom: calc(90px + env(safe-area-inset-bottom));
-          }
-        }
       }
 
       main {
@@ -407,15 +396,6 @@
         flex-direction: column;
         gap: 8px;
         margin-top: auto;
-      }
-
-      /* Только для мобильных — добавляем padding для safe area */
-      @media (max-width: 760px) {
-        @supports (padding-bottom: env(safe-area-inset-bottom)) {
-          .site-footer {
-            padding-bottom: calc(30px + env(safe-area-inset-bottom));
-          }
-        }
       }
 
       /* Privacy Modal */

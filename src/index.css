@@ -26,8 +26,6 @@ html, body {
 /* ─── Base (mobile-first) ─── */
 html {
   scroll-behavior: smooth;
-  background: var(--ink);
-  overscroll-behavior: none;
 }
 
 /* ─── Selection styles ─── */
@@ -80,15 +78,6 @@ body {
 
 body.is-loaded {
   opacity: 1;
-}
-
-/* Только для мобильных — добавляем padding для safe area */
-@media (max-width: 760px) {
-  @supports (padding-bottom: env(safe-area-inset-bottom)) {
-    body {
-      padding-bottom: calc(90px + env(safe-area-inset-bottom));
-    }
-  }
 }
 
 main {
