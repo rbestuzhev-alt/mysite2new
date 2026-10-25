@@ -5,19 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#F3F4F5" />
     <title>Роман Бестужев — Fullstack-разработчик</title>
-    <meta name="description" content="Временно страница в разработке. Свяжитесь со мной по телефону, почте, в Telegram или MAX." />
+    <meta name="description" content="Временно страница в разработке. Свяжитесь со мной по телефону, почте, в Telegram или MAX — обсудим вашу задачу." />
+    <meta name="author" content="Роман Бестужев" />
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content="веб-разработка, fullstack, разработчик, Барнаул" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://bestuzhev.tech/" />
     <meta property="og:title" content="Роман Бестужев — Fullstack-разработчик" />
-    <meta property="og:description" content="Временно страница в разработке. Свяжитесь со мной по телефону, почте, в Telegram или MAX." />
+    <meta property="og:description" content="Временно страница в разработке. Свяжитесь со мной — обсудим вашу задачу." />
     <meta property="og:locale" content="ru_RU" />
+    <meta property="og:site_name" content="bestuzhev.tech" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Роман Бестужев — Fullstack-разработчик" />
-    <meta name="twitter:description" content="Временно страница в разработке. Свяжитесь со мной по телефону, почте, в Telegram или MAX." />
+    <meta name="twitter:description" content="Временно страница в разработке." />
+
+    <!-- Sitemap -->
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -43,8 +50,46 @@
         padding: 0;
       }
 
+      html, body {
+        scrollbar-gutter: stable;
+      }
+
       html {
         scroll-behavior: smooth;
+      }
+
+      /* Selection styles */
+      ::selection {
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      ::-moz-selection {
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--paper);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--hair);
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--muted);
+      }
+
+      * {
+        scrollbar-width: thin;
+        scrollbar-color: var(--hair) var(--paper);
       }
 
       body {

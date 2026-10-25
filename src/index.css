@@ -19,9 +19,47 @@
   padding: 0;
 }
 
+html, body {
+  scrollbar-gutter: stable;
+}
+
 /* ─── Base (mobile-first) ─── */
 html {
   scroll-behavior: smooth;
+}
+
+/* ─── Selection styles ─── */
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+::-moz-selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* ─── Custom scrollbar ─── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--hair);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--hair) var(--paper);
 }
 
 body {

@@ -234,7 +234,7 @@ function App() {
           {/* 3.4. Privacy trigger text */}
           <p className="privacy-trigger">
             Нажимая кнопку, вы соглашаетесь с{' '}
-            <a href="#" className="privacy-link">
+            <a href="#" className="privacy-link" aria-label="Открыть политику конфиденциальности">
               политикой конфиденциальности
             </a>
           </p>
