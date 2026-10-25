@@ -65,7 +65,7 @@ function App() {
       document.body.style.overflow = 'hidden';
       modal?.classList.add('active');
       modal?.setAttribute('aria-hidden', 'false');
-      setTimeout(() => closeBtn?.focus(), 100);
+      // Фокус не переносим на крестик — это вызывает выделение в Safari
     };
 
     const closeModal = () => {

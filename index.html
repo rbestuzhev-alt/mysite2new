@@ -471,17 +471,23 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        outline: none;
+        outline: none !important;
         -webkit-tap-highlight-color: transparent;
+        -webkit-focus-ring-color: transparent;
+        box-shadow: none !important;
       }
 
-      .privacy-modal__close:focus-visible {
-        outline: 2px solid var(--ink);
+      .privacy-modal__close:focus,
+      .privacy-modal__close:focus-visible,
+      .privacy-modal__close:active {
+        outline: none !important;
+        -webkit-focus-ring-color: transparent;
+        box-shadow: none !important;
+      }
+
+      .privacy-modal__close.keyboard-focus:focus {
+        outline: 2px solid var(--ink) !important;
         outline-offset: 2px;
-      }
-
-      .privacy-modal__close:focus:not(:focus-visible) {
-        outline: none;
       }
 
       .privacy-modal__close:hover {
@@ -647,6 +653,38 @@
         } else {
           window.addEventListener('load', showPage);
         }
+      })();
+
+      // Keyboard navigation tracking for focus styles
+      (function() {
+        function addKeyboardFocus() {
+          document.querySelectorAll('button, a, [tabindex]').forEach(function(el) {
+            el.classList.add('keyboard-focus');
+          });
+        }
+
+        function removeKeyboardFocus() {
+          document.querySelectorAll('button, a, [tabindex]').forEach(function(el) {
+            el.classList.remove('keyboard-focus');
+          });
+        }
+
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Tab') {
+            document.body.classList.add('keyboard-nav');
+            addKeyboardFocus();
+          }
+        });
+
+        document.addEventListener('mousedown', function() {
+          document.body.classList.remove('keyboard-nav');
+          removeKeyboardFocus();
+        });
+
+        document.addEventListener('touchstart', function() {
+          document.body.classList.remove('keyboard-nav');
+          removeKeyboardFocus();
+        });
       })();
     </script>
   </body>
