@@ -6,6 +6,27 @@ import { useEffect } from 'react';
 
 function App() {
   useEffect(() => {
+    // === Live clock (Barnaul timezone) ===
+    const clockElement = document.getElementById('header-clock');
+    let clockInterval: ReturnType<typeof setInterval> | null = null;
+    
+    if (clockElement) {
+      const updateClock = () => {
+        const now = new Date();
+        const timeStr = new Intl.DateTimeFormat('ru-RU', {
+          timeZone: 'Asia/Barnaul',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        }).format(now);
+        clockElement.textContent = timeStr;
+      };
+      
+      updateClock();
+      clockInterval = setInterval(updateClock, 1000);
+    }
+
     // Smooth scroll to contacts
     const ctaButton = document.querySelector('.btn-cta') as HTMLAnchorElement | null;
     const handleCtaClick = (e: Event) => {
@@ -97,6 +118,9 @@ function App() {
 
     // Cleanup
     return () => {
+      if (clockInterval) {
+        clearInterval(clockInterval);
+      }
       if (ctaButton) {
         ctaButton.removeEventListener('click', handleCtaClick);
       }
@@ -121,7 +145,7 @@ function App() {
           ═══════════════════════════════════════════ */}
       <header className="site-header">
         <span className="header-left">роман бестужев</span>
-        <span className="header-center">03:00:45</span>
+        <span className="header-center" id="header-clock">03:00:45</span>
         <span className="header-right">веб-разработка.</span>
       </header>
 
