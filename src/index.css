@@ -222,20 +222,14 @@ body {
   border-top: 1px solid var(--hair);
   padding: 32px 0;
   text-align: center;
-  opacity: 0;
-  transform: translateY(20px);
+  --play-state: paused;
+  animation-play-state: var(--play-state);
 }
 
 /* Анимация запускается только когда body получает класс animations-ready */
 body.animations-ready .contact-row {
-  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  --play-state: running;
 }
-
-/* Каскадные задержки для каждого блока */
-body.animations-ready .contact-row--1 { animation-delay: 0s; }
-body.animations-ready .contact-row--2 { animation-delay: 0.15s; }
-body.animations-ready .contact-row--3 { animation-delay: 0.3s; }
-body.animations-ready .contact-row--4 { animation-delay: 0.45s; }
 
 /* Keyframes анимации */
 @keyframes fadeInUp {
@@ -248,9 +242,9 @@ body.animations-ready .contact-row--4 { animation-delay: 0.45s; }
 /* Уважение к настройкам пользователя — отключаем анимации */
 @media (prefers-reduced-motion: reduce) {
   .contact-row {
-    opacity: 1;
-    transform: none;
-    animation: none;
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
   }
 }
 
